@@ -1,0 +1,23 @@
+name: 'Vaulted Get Secret'
+description: 'Retrieve and decrypt a secret from a Vaulted link. Zero-knowledge — decryption happens locally.'
+author: 'Maxim Novak'
+
+inputs:
+  url:
+    description: 'Vaulted URL to decrypt'
+    required: true
+  passphrase:
+    description: 'Passphrase if the secret is protected'
+    required: false
+
+outputs:
+  secret:
+    description: 'The decrypted secret value (masked in logs)'
+
+runs:
+  using: 'node20'
+  main: '../dist/get/index.js'
+
+branding:
+  icon: 'unlock'
+  color: 'purple'

@@ -1,0 +1,33 @@
+name: 'Vaulted Share Secret'
+description: 'Create E2E encrypted, self-destructing secret links via vaulted.fyi. Zero-knowledge — your secret never touches the server.'
+author: 'Maxim Novak'
+
+inputs:
+  secret:
+    description: 'The plaintext secret to encrypt and share'
+    required: true
+  views:
+    description: 'Max views before auto-delete (1, 3, 5, 10)'
+    required: false
+    default: '1'
+  expires:
+    description: 'Expiration time (1h, 24h, 7d, 30d)'
+    required: false
+    default: '24h'
+  passphrase:
+    description: 'Optional passphrase for extra protection'
+    required: false
+
+outputs:
+  url:
+    description: 'The Vaulted secret link'
+  id:
+    description: 'The secret ID'
+
+runs:
+  using: 'node20'
+  main: 'dist/create/index.js'
+
+branding:
+  icon: 'lock'
+  color: 'purple'
