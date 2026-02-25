@@ -27449,7 +27449,7 @@ __nccwpck_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(7484);
-;// CONCATENATED MODULE: ../vaulted/packages/crypto/dist/crypto.js
+;// CONCATENATED MODULE: ./node_modules/@vaulted/crypto/dist/crypto.js
 // src/crypto.ts
 var ALGORITHM = "AES-GCM";
 var KEY_LENGTH = 256;
