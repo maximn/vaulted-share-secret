@@ -10,7 +10,7 @@ Zero-knowledge encryption — your secret never touches the server in plaintext.
 
 ```yaml
 - name: Share deploy credentials
-  uses: maximn/vaulted-share-secret@v1
+  uses: vaulted-fyi/share-secret@v1
   id: share
   with:
     secret: ${{ secrets.STAGING_API_KEY }}
@@ -24,7 +24,7 @@ Zero-knowledge encryption — your secret never touches the server in plaintext.
 
 ```yaml
 - name: Fetch credentials
-  uses: maximn/vaulted-share-secret/get@v1
+  uses: vaulted-fyi/share-secret/get@v1
   id: fetch
   with:
     url: ${{ secrets.CREDS_URL }}
@@ -94,7 +94,7 @@ Masked outputs cannot cross job boundaries — GitHub strips them. The `secret` 
 ### Post secret link as PR comment
 
 ```yaml
-- uses: maximn/vaulted-share-secret@v1
+- uses: vaulted-fyi/share-secret@v1
   id: share
   with:
     secret: ${{ secrets.REVIEW_CREDENTIALS }}
@@ -115,7 +115,7 @@ Masked outputs cannot cross job boundaries — GitHub strips them. The `secret` 
 ### Send to Slack
 
 ```yaml
-- uses: maximn/vaulted-share-secret@v1
+- uses: vaulted-fyi/share-secret@v1
   id: share
   with:
     secret: ${{ secrets.DEPLOY_KEY }}
@@ -130,7 +130,7 @@ Masked outputs cannot cross job boundaries — GitHub strips them. The `secret` 
 ### Passphrase-protected
 
 ```yaml
-- uses: maximn/vaulted-share-secret@v1
+- uses: vaulted-fyi/share-secret@v1
   with:
     secret: ${{ secrets.DATABASE_URL }}
     passphrase: ${{ secrets.SHARE_PASSPHRASE }}
