@@ -1,0 +1,39 @@
+name: E2E
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate random secret
+        id: random
+        run: echo "value=$(openssl rand -hex 16)" >> "$GITHUB_OUTPUT"
+      - name: Create secret
+        id: create
+        uses: ./
+        with:
+          secret: ${{ steps.random.outputs.value }}
+          expires: 1h
+      - name: Get secret
+        id: get
+        uses: ./get
+        with:
+          url: ${{ steps.create.outputs.url }}
+      - name: Verify round-trip
+        env:
+          EXPECTED: ${{ steps.random.outputs.value }}
+          ACTUAL: ${{ steps.get.outputs.secret }}
+        run: |
+          if [ "$EXPECTED" = "$ACTUAL" ]; then
+            echo "E2E test passed"
+          else
+            echo "E2E test failed: secrets don't match"
+            exit 1
+          fi
