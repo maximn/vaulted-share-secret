@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@vaulted/crypto": "file:../vaulted/packages/crypto"
+    "@vaulted/crypto": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
