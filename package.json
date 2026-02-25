@@ -1,0 +1,26 @@
+{
+  "name": "vaulted-share-secret",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:create && npm run build:get",
+    "build:create": "ncc build src/index.ts -o dist/create --source-map --license licenses.txt",
+    "build:get": "ncc build src/get-index.ts -o dist/get --source-map --license licenses.txt",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@vaulted/crypto": "file:../vaulted/packages/crypto"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
