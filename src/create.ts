@@ -5,6 +5,7 @@ import {
   encrypt,
   wrapKeyWithPassphrase,
 } from '@vaulted/crypto'
+import { USER_AGENT } from './version.js'
 
 const API_HOST = 'https://vaulted.fyi'
 
@@ -40,7 +41,10 @@ export async function createSecret(opts: CreateOptions): Promise<void> {
 
   const response = await fetch(`${API_HOST}/api/secrets`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'User-Agent': USER_AGENT,
+    },
     body: JSON.stringify({
       ciphertext,
       iv,

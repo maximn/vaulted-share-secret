@@ -27562,7 +27562,14 @@ function base64urlToBuffer(base64url) {
 }
 
 
+;// CONCATENATED MODULE: ./package.json
+const package_namespaceObject = {"rE":"1.0.0"};
+;// CONCATENATED MODULE: ./src/version.ts
+
+const USER_AGENT = `vaulted-github-action/${package_namespaceObject.rE}`;
+
 ;// CONCATENATED MODULE: ./src/create.ts
+
 
 
 const API_HOST = 'https://vaulted.fyi';
@@ -27587,7 +27594,10 @@ async function createSecret(opts) {
     const ttl = EXPIRES_MAP[opts.expires];
     const response = await fetch(`${API_HOST}/api/secrets`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': USER_AGENT,
+        },
         body: JSON.stringify({
             ciphertext,
             iv,

@@ -27562,12 +27562,21 @@ function base64urlToBuffer(base64url) {
 }
 
 
+;// CONCATENATED MODULE: ./package.json
+const package_namespaceObject = {"rE":"1.0.0"};
+;// CONCATENATED MODULE: ./src/version.ts
+
+const USER_AGENT = `vaulted-github-action/${package_namespaceObject.rE}`;
+
 ;// CONCATENATED MODULE: ./src/get.ts
+
 
 
 async function getSecret(opts) {
     const parsed = parseVaultedUrl(opts.url);
-    const response = await fetch(`${parsed.origin}/api/secrets/${parsed.id}`);
+    const response = await fetch(`${parsed.origin}/api/secrets/${parsed.id}`, {
+        headers: { 'User-Agent': USER_AGENT },
+    });
     if (!response.ok) {
         if (response.status === 404) {
             throw new Error('Secret not found or already expired.');

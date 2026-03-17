@@ -41,7 +41,9 @@ describe('getSecret', () => {
       url: `https://vaulted.fyi/s/abc123#${keyStr}`,
     })
 
-    expect(mockFetch).toHaveBeenCalledWith('https://vaulted.fyi/api/secrets/abc123')
+    expect(mockFetch).toHaveBeenCalledWith('https://vaulted.fyi/api/secrets/abc123', {
+      headers: { 'User-Agent': 'vaulted-github-action/1.0.0' },
+    })
 
     const secretCallOrder = mockSetSecret.mock.invocationCallOrder[0]
     const outputCallOrder = mockSetOutput.mock.invocationCallOrder[0]

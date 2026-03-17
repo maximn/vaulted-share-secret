@@ -4,6 +4,7 @@ import {
   decrypt,
   unwrapKeyWithPassphrase,
 } from '@vaulted/crypto'
+import { USER_AGENT } from './version.js'
 
 interface GetOptions {
   url: string
@@ -13,7 +14,9 @@ interface GetOptions {
 export async function getSecret(opts: GetOptions): Promise<void> {
   const parsed = parseVaultedUrl(opts.url)
 
-  const response = await fetch(`${parsed.origin}/api/secrets/${parsed.id}`)
+  const response = await fetch(`${parsed.origin}/api/secrets/${parsed.id}`, {
+    headers: { 'User-Agent': USER_AGENT },
+  })
 
   if (!response.ok) {
     if (response.status === 404) {
